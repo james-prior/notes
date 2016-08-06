@@ -1,0 +1,141 @@
+This documents how I set up a git server with security so that developers have
+access only to the repositories they are supposed to have access to. It's
+running on Ubuntu server, probably 14.04.
+
+This is meant for a few developers and a few repositories. 
+It likely does not scale well. 
+
+path for growth
+
+    If there are many developers and/or repositories such that the
+    administration becomes too much work, or if one wants some developers to
+    have read-only access, one should probably consider using something like
+    gitosis as described on
+    http://git-scm.com/book/en/Git-on-the-Server-Gitosis. There are multiple
+    good solutions. 
+
+Questions:
+
+    Is the security sufficient?
+    Is it OK that any user can see the names of repositories in /var/git? 
+    Is it OK that any user can see the names of other users?
+    Is it OK that any user can see /etc/group and thus, what groups there are
+    and who is in each group?
+
+General scheme
+
+    Access to the repositories is controlled by classic Unix file permissions,
+    especially by group permissions. 
+    
+    Each developer has an account on the server.
+    Each repository has a group on the server.
+    Developers are given access to a repository by making them members of the
+    repository's group.
+    
+    Developers authenticate only with keys, not passwords.
+    Their accounts are just for access to the repositories with git commands
+    that use ssh.
+
+    Each developer who has access to a repository, has full read and write
+    access. 
+
+In the stuff below, there are example names.
+
+    gitserver is the name of the git server.
+    gitmaster is the name of the administrator on the git server.
+    click and clack are the names of developers.
+    valves is the name of a repository.
+
+once per server:
+
+    on server computer:
+
+        # Where gitmaster is the git administrator.
+
+        sudo mkdir /var/git
+        sudo chgrp gitmaster /var/git
+        sudo chmod g+rwx /var/git
+
+    on client computer:
+
+        Add gitserver to /etc/hosts or however one does name resolution. 
+
+once per developer: 
+
+    on client computer:
+
+        sudo apt-get -y install openssh-server
+
+        # Generate public/private key pair for ssh.
+        ssh-keygen -t rsa
+        cat .ssh/id_rsa.pub ;# for ~click/.ssh/authorized_keys on server.
+
+    on server computer:
+
+        # Do following while logged in as gitmaster.
+
+        # Create account for developer that only allows git stuff.
+        sudo useradd -m -s /usr/bin/git-shell click
+
+        # Append developer's ssh public key to .ssh/authorized_keys.
+        sudo su -s /bin/bash - click
+        mkdir .ssh
+        chmod 700 .ssh
+        touch .ssh/authorized_keys
+        chmod 600 .ssh/authorized_keys
+        cat >>.ssh/authorized_keys
+
+        # to get rid of user:
+        #     sudo userdel -r click
+
+once per repository:
+
+    on server computer:
+
+        # do as gitmaster
+        
+        sudo groupadd valves
+        # add developers to that group
+        for developer in click clack; do
+            sudo usermod -a -G valves "$developer"
+        done
+        cd /var/git
+        mkdir valves.git
+        cd valves.git
+        sudo chgrp valves .
+        sudo chmod o-rwx .
+        # would have to allow click to have normal 
+        sudo su -s /bin/bash - click
+        newgrp valves
+        cd /var/git/valves.git
+        git init --bare --shared
+
+        # to get rid of repository
+        # sudo rm -rf /var/git/valves.git
+        # sudo groupdel valves
+
+    on client computer:
+
+        # do as click
+
+        to push an existing repo
+
+            # cd into project directory
+
+            git remote add origin click@gitserver:/var/git/valves.git
+            git push origin master
+
+        to clone the repo that is on the server
+
+            # this will create a valves directory and 
+            # put a clone of the repository in that directory. 
+            git clone click@gitserver:/var/git/valves.git
+
+        other handy git commands
+
+            git fetch
+            git fetch origin
+            git remote -v
+            git remote remove origin
+
+I followed http://www.git-scm.com/book/en/Git-on-the-Server. 
