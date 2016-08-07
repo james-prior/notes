@@ -1,0 +1,137 @@
+Mad Man Muntz Version of how to use git
+
+once per user: 
+
+   git config --global user.name 'John Doe'
+   git config --global user.email 'john.doe@example.com'
+   git config --global core.autocrlf input
+   git config --global core.safecrlf false
+
+once per repository:
+
+   mkdir foo
+   cd foo ;# Repository lives in a directory. Execute all git comamnds in same.
+   git init
+
+   git ci --allow-empty -m 'Start with empty commit.'
+
+once per version commit: 
+
+   if not first version:
+      get checkout master
+   vi *
+   git add * ;# * is of files one wants to track in repository
+   git commit -m 'short explanation of this version'
+   git tag v1.n
+
+list versions:
+
+   git log
+   git log --pretty-format
+   git log --all
+   git log --all --pretty-format
+   git log --all --pretty-format="%h %cd %ad %an %ac"
+   git log --pretty=oneline
+   git log --pretty=oneline --max-count=2
+   git log --pretty=oneline -2 ;# same as --max-count=2
+   git log --pretty=oneline --since='5 minutes ago'
+   git log --pretty=oneline --until='5 minutes ago'
+   git log --pretty=oneline --author='James Prior'
+   git log --all --pretty=format:"%h %cd %s (%an)" --since='7 days ago'
+   git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
+   git tag ;# list tags
+
+get a version of code from repository: 
+
+   git checkout master
+   git checkout v1.n
+   git checkout 3456514321 ;# hash from output of git log
+   git checkout -- . ;# maybe restore all files from repository
+
+----
+
+fatter version
+
+#! deprecated: After one does git clone with whatever URL,
+#! deprecated: edit the url in .git/config to make the remote repo happy.
+
+Starting with a command like the following:
+    git clone git@github.com:james-prior/ansible-modules-core.git
+
+                            git@github.com:james-prior/challenge-201604-words.git
+[doj@panera git]$ git clone git@github:james-prior/challenge-201604-words.git
+# My .ssh/config allows me to say just github instead of github.com:
+
+    [doj@panera ~]$ cat .ssh/config
+    ...
+    Host github github.com
+        Hostname github.com
+        IdentityFile ~/.ssh/github-id_rsa
+        User james-prior
+    ...
+    [doj@panera ~]$ 
+
+[doj@panera git]$ cd challenge-201604-words/
+[doj@panera challenge-201604-words]$ git remote -v
+origin  git@github:james-prior/challenge-201604-words.git (fetch)
+origin  git@github:james-prior/challenge-201604-words.git (push)
+[doj@panera challenge-201604-words]$ 
+
+[doj@panera git]$ git clone https://github.com/james-prior/challenge-201604-words.git
+[doj@panera git]$ cd challenge-201604-words/
+[doj@panera challenge-201604-words]$ git remote -v
+origin  https://github.com/james-prior/challenge-201604-words.git (fetch)
+origin  https://github.com/james-prior/challenge-201604-words.git (push)
+[doj@panera challenge-201604-words]$ 
+
+ssh remotes:
+
+    git remote add casual doj@casual:challenge-201604-words/.git
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        [doj@panera challenge-201604-words]$ git remote -v
+        casual  doj@casual:challenge-201604-words/.git (fetch)
+        casual  doj@casual:challenge-201604-words/.git (push)
+        origin  git@github:james-prior/challenge-201604-words.git (fetch)
+        origin  git@github:james-prior/challenge-201604-words.git (push)
+        [doj@panera challenge-201604-words]$ 
+
+        Note that the ^'ed part is the relative path of the git directory,
+        relative to the user's home.
+        (typically ending with projectname/.git for non-bare repos)
+        (typically ending with projectname.git for bare repos)
+
+    git remote add casual ssh://doj@casual/home/doj/challenge-201604-words/.git
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        [doj@panera challenge-201604-words]$ git remote -v
+        casual  ssh://doj@casual/home/doj/challenge-201604-words/.git (fetch)
+        casual  ssh://doj@casual/home/doj/challenge-201604-words/.git (push)
+        origin  git@github:james-prior/challenge-201604-words.git (fetch)
+        origin  git@github:james-prior/challenge-201604-words.git (push)
+        [doj@panera challenge-201604-words]$ git fetch 
+
+        Note that the ^'ed part is the absolute path of the git directory.
+        (typically ending with /projectname/.git for non-bare repos)
+        (typically ending with /projectname.git for bare repos)
+
+redo commits:
+
+    most recent:
+
+        git commit --amend -m 'new comment'
+        git commit --amend ;# drops into editor
+
+    older commits:
+
+        git rebase --interactive <parent_of_flawed_commit>
+
+            If you want to edit old commits, use the parent of the oldest one.
+            Change pick to reword in front of any commits you want to edit.
+            http://stackoverflow.com/questions/179123/edit-an-incorrect-commit-messge-in-git
+
+to forget remote branches that no longer exist on remote computer:
+
+    git remote prune casual
+
+to push repo to github that was not cloned from github
+
+    git push -u origin master
