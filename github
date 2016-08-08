@@ -1,0 +1,132 @@
+2015-03-17
+
+Issues:
+    
+    ssh keys: Use just github instead of github.com in urls
+    if .ssh/config has Host github Hostname github.com
+    Would commenting out Host line in config suffice?
+
+    github ignored my README.md, LICENSE, and TODO files. (gas-prices)
+
+2014-01-13
+
+Generated separate ssh key pair for use _only_ with github.
+The following web pages were helpful.
+
+    https://help.github.com/articles/generating-ssh-keys
+    http://stackoverflow.com/questions/2419566/best-way-to-use-multiple-ssh-private-keys-on-one-client
+
+Should probably read following:
+
+    https://help.github.com/articles/error-permission-denied-publickey
+
+doj@strict:~$ ssh-keygen -t rsa -C "dojo@columbus.rr.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/doj/.ssh/id_rsa): /home/doj/.ssh/github-id_rsa     
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/doj/.ssh/github-id_rsa.
+Your public key has been saved in /home/doj/.ssh/github-id_rsa.pub.
+The key fingerprint is:
+[.....................redacted................] dojo@columbus.rr.com
+The key's randomart image is:
++--[ RSA 2048]----+
+|                 |
+|                 |
+|                 |
+|                 |
+|    redacted     |
+|                 |
+|                 |
+|                 |
+|                 |
++-----------------+
+
+
+# Created new .ssh/config file to control which key is used for which purpose.
+doj@strict:~/.ssh$ vi config
+doj@strict:~/.ssh$ chmod 644 config 
+
+doj@strict:~$ lll ~/.ssh/config
+-rw-r--r-- 1 doj doj 84 2014-01-13 11:26:39.109286959 -0500 /home/doj/.ssh/config
+doj@strict:~$ cat ~/.ssh/config
+Host github
+Hostname github.com
+IdentityFile ~/.ssh/github-id_rsa
+User james-prior
+
+doj@strict:~$ 
+
+Went to https://github.com/settings/ssh, 
+Click on "Add SSH key" button.
+    Entered "main" as Title. (Don't know if title was necessary.)
+    Pasted contents of ~/.ssh/github-id_rsa.pub into Key
+
+doj@strict:~/.ssh$ ssh -T git@github.com
+The authenticity of host 'github.com (192.30.252.128)' can't be established.
+RSA key fingerprint is [.....................redacted................].
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,192.30.252.128' (RSA) to the list of known hosts.
+Permission denied (publickey).
+doj@strict:~/.ssh$ 
+
+doj@strict:~/.ssh$ ssh -T git@github.com
+Warning: Permanently added the RSA host key for IP address '192.30.252.130' to the list of known hosts.
+Hi james-prior! You've successfully authenticated, but GitHub does not provide shell access.
+doj@strict:~/.ssh$ 
+
+doj@strict:~/.ssh$ ssh -T git@github.com
+Warning: Permanently added the RSA host key for IP address '192.30.252.129' to the list of known hosts.
+Hi james-prior! You've successfully authenticated, but GitHub does not provide shell access.
+doj@strict:~/.ssh$ ssh -T git@github.com
+Warning: Permanently added the RSA host key for IP address '192.30.252.131' to the list of known hosts.
+Hi james-prior! You've successfully authenticated, but GitHub does not provide shell access.
+doj@strict:~/.ssh$ 
+
+--------------------------------------------------------------------------------
+
+Make new repository and access it through ssh.
+
+In browser on local machine.
+
+    Browse to https://github.com
+    Login.
+    Click on "+" icon near upper right corner.
+        Click on new repository.
+    Repository name: fifth
+    Description: fifth try
+    <Uncheck> Initialize this repository with a README
+    did not bother to add .gitignore or a license.
+    Click "Create repository".
+
+On command line on local machine:
+
+    mkdir fifth
+    cd fifth
+    git init
+    vi hello.c
+    git add hello.c
+    git commit -m 'hello.c: Created.'
+    git remote add origin git@github.com:james-prior/fifth.git
+    git push -u origin master
+
+The main configuration command for remote access was the git remote command.
+Now one can do git push and git fetch at will.
+
+    git fetch
+    git checkout -b dev
+    vi hello.c;# Added a comment.
+    git add hello.c
+    git commit -m 'hello.c: Created.'
+    git push origin dev
+
+--------------------------------------------------------------------------------
+
+Clone the above "fifth" repo.
+
+    mkdir fifth-clone
+    cd fifth-clone
+    git init
+    git remote add origin git@github.com:james-prior/fifth.git
+    git fetch
+
