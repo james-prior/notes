@@ -43,11 +43,29 @@ list versions:
 
 get a version of code from repository: 
 
-   git checkout master
-   git checkout v1.n
+   git checkout master ;# branch name
+   git checkout v1.n ;# tag name
    git checkout 3456514321 ;# hash from output of git log
+
    git checkout -- . ;# maybe restore all files from repository
 
+###############################################################################
+
+git push remotename localbranchname:remotebranchname
+git push remotename branchname
+    # above is expanded to git push remotename branchname:branchname
+git push remotename :remotebranchname ;# deletes remotebranchname
+git push remotename --delete remotebranchname ;#new way to delete remote branch
+
+    github will not let one delete the default branch of repo.
+    To delete the default branch,
+    log into github and choose a different branch to be the default.
+    If there is only one branch on the remote repo,
+    github will not allow you to change it.
+    So locally create some other branch and push it up to github,
+    then choose it as the default branch on github.
+
+###############################################################################
 ----
 
 fatter version
