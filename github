@@ -6,8 +6,6 @@ Issues:
     if .ssh/config has Host github Hostname github.com
     Would commenting out Host line in config suffice?
 
-    github ignored my README.md, LICENSE, and TODO files. (gas-prices)
-
 2014-01-13
 
 Generated separate ssh key pair for use _only_ with github.
@@ -20,7 +18,7 @@ Should probably read following:
 
     https://help.github.com/articles/error-permission-denied-publickey
 
-doj@strict:~$ ssh-keygen -t rsa -C "dojo@columbus.rr.com"
+doj@strict:~$ ssh-keygen -t rsa -C "doj@columbus.rr.com"
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/doj/.ssh/id_rsa): /home/doj/.ssh/github-id_rsa     
 Enter passphrase (empty for no passphrase): 
@@ -28,7 +26,7 @@ Enter same passphrase again:
 Your identification has been saved in /home/doj/.ssh/github-id_rsa.
 Your public key has been saved in /home/doj/.ssh/github-id_rsa.pub.
 The key fingerprint is:
-[.....................redacted................] dojo@columbus.rr.com
+[.....................redacted................] doj@columbus.rr.com
 The key's randomart image is:
 +--[ RSA 2048]----+
 |                 |
