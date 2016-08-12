@@ -9,13 +9,15 @@ once per user:
 
 once per repository:
 
+    # Repository lives in a directory.
+    # Execute all git comamnds in that directory or subdirectories thereof.
     mkdir foo
-    cd foo ;# Repository lives in a directory. Execute all git comamnds in same.
+    cd foo
     git init
 
-    git ci --allow-empty -m 'Start with empty commit.' ;# Eases rebasing.
+    git ci --allow-empty -m 'Start with empty commit.' ;# Eases later rebasing.
 
-once per version commit: 
+once per version (aka "commit" in git-speak): 
 
     if not first version:
         get checkout master
@@ -76,26 +78,30 @@ In the current working directory, makes directory from project name.
 Puts repo in that subdirectory named after project.
 The .git directory will be in a subdirectory of that project directory.
 
+    # with ssh setup right, these do not ask for password
     git clone git@github:james-prior/challenge-201604-words.git
     git clone git@github:james-prior/challenge-201604-words ;# works w/o .git
     git clone git@github.com:james-prior/challenge-201604-words ;# works too
 
+    # probably can not push later with these urls
     git clone git://github.com/pydata/pandas.git
     git clone git://github.com/james-prior/challenge-201604-words.git
     git clone git://github.com/james-prior/challenge-201604-words
     git clone git://github/james-prior/challenge-201604-words.git ;# bad
 
+    # pushing later will ask for password
     git clone https://github.com/chalmerlowe/data_generator.git
     git clone https://github.com/chalmerlowe/data_generator ;# works w/o .git
     git clone https://github/chalmerlowe/data_generator.git ;# bad
     git clone https://github.com/pydata/pandas.git
 
-    git clone ssh://doj@casual/home/doj/i/dojo/.git ;# must have absolute path
+    # with ssh setup right, these do not ask for password
     git clone doj@casual:i/dojo/.git ;# path relative to home
     git clone doj@casual:/home/doj/i/dojo/.git ;# absolute path
+    git clone ssh://doj@casual/home/doj/i/dojo/.git ;# must have absolute path
 
     # can use relative or absolute paths
-    # like rsync, but have origin for fetch/push
+    # like rsync, but has origin for fetch/push
     git clone ~/i/dojo/.git
     git clone /home/doj/i/dojo/.git
 
@@ -104,7 +110,7 @@ The .git directory will be in a subdirectory of that project directory.
 git push remotename localbranchname:remotebranchname
 git push remotename branchname
     # above is expanded to git push remotename branchname:branchname
-git push remotename :remotebranchname ;# deletes remotebranchname
+git push remotename :remotebranchname ;# deletes remote branch remotebranchname
 git push remotename --delete remotebranchname ;#new way to delete remote branch
 
     github will not let one delete the default branch of repo.
@@ -116,7 +122,6 @@ git push remotename --delete remotebranchname ;#new way to delete remote branch
     then choose it as the default branch on github.
 
 ###############################################################################
-----
 
 fatter version
 
@@ -124,7 +129,9 @@ fatter version
 #! deprecated: edit the url in .git/config to make the remote repo happy.
 
 Starting with a command like the following:
+    git clone git@github:james-prior/ansible-modules-core.git
     git clone git@github.com:james-prior/ansible-modules-core.git
+avoids the need to edit the url value in .git/config.
 
                             git@github.com:james-prior/challenge-201604-words.git
 [doj@panera git]$ git clone git@github:james-prior/challenge-201604-words.git
@@ -186,10 +193,14 @@ redo commits:
             Change pick to reword in front of any commits you want to edit.
             http://stackoverflow.com/questions/179123/edit-an-incorrect-commit-messge-in-git
 
-to forget remote branches that no longer exist on remote computer:
+to forget remote branches from local repo that no longer exist on remote repo:
 
     git remote prune casual
 
 to push repo to github that was not cloned from github
 
     git push -u origin master
+
+###############################################################################
+
+git commit --amend
