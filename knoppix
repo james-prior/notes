@@ -1,0 +1,13 @@
+7.6.0 DVD
+
+    boot: knoppix64 no3d noswap
+    boot: knoppix no3d noswap
+
+    # sets systemm time based on hardware that is in UTC
+    sudo kwclock -s -u
+
+7.4.2 DVD
+
+    boot: knoppix64 no3d noswap toram (works with 8GB of RAM)
+    boot: knoppix no3d noswap toram (does not work, because only 3GB RAM 32-bit)
+
