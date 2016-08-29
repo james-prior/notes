@@ -4,7 +4,7 @@
     boot: knoppix no3d noswap
 
     # sets systemm time based on hardware that is in UTC
-    sudo kwclock -s -u
+    sudo hwclock -s -u
 
 7.4.2 DVD
 
