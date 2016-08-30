@@ -1,0 +1,20 @@
+yum install packagename
+yum update packagename
+yum remove packagename
+yum search somekeyword
+yum list
+yum list available
+yum list installed
+yum info packagename ;# works for packages that are not installed
+yum provides /etc/sysconfig/nfs ;# tells which packages could provide something
+
+yum grouplist
+yum groupinstall 'DNS Name Server'
+yum groupremove 'DNS Name Server'
+yum groupupdate 'Graphical Internet'
+
+yum repolist
+yum repolist all
+yum --enablerepo=redora-source install vim-X11.x86_65
+
+yum shell
