@@ -1,0 +1,8 @@
+When XFCE4 goes whacko, with all windows stacked on top of each other in the
+upper left hand corner, with only the top window accessible, explore 
+the following: 
+
+xfwm4 --replace
+locate .xsession-errors
+rm -rf .cache/sessions
+
