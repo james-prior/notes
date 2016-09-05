@@ -204,3 +204,5 @@ to push repo to github that was not cloned from github
 ###############################################################################
 
 git commit --amend
+
+for remote in `git remote`; do git fetch "$remote";done
