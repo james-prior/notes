@@ -1,0 +1,23 @@
+need wx radar and gas prices links in browser
+http://columbusgasprices.com/index.aspx?s=Y&fuel=A&area=Columbus+-+Central&area=Columbus+-+East&area=Columbus+-+North&area=Columbus+-+West&tme_limit=8
+http://forecast.weather.gov/MapClick.php?CityName=Columbus&state=OH&site=ILN&lat=39.9889&lon=-82.9874
+http://forecast.weather.gov/MapClick.php?w0=t&w1=td&w3=sfcwind&w3u=1&w4=sky&w5=pop&w8=rain&AheadHour=0&Submit=Submit&FcstType=graphical&textField1=39.98890&textField2=-82.98740&site=all&unit=0&dd=0&bw=0
+http://radblast-aws.wunderground.com/cgi-bin/radar/WUNIDS_map?station=CMH&brand=wui&num=6&delay=15&type=TR0&frame=0&scale=1.000&noclutter=0&t=1371131769&lat=0&lon=0&label=you&showstorms=10&map.x=400&map.y=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=0&lightning=0&smooth=0
+http://radblast-aws.wunderground.com/cgi-bin/radar/WUNIDS_map?station=ILN&brand=wui&num=6&delay=15&type=N0R&frame=0&scale=1.000&noclutter=0&t=1371131330&lat=40.10094070&lon=-83.01473999&label=Worthington%2C+OH&showstorms=0&map.x=400&map.y=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=0&lightning=0&smooth=0
+http://radblast-aws.wunderground.com/cgi-bin/radar/WUNIDS_map?station=ILN&brand=wui&num=6&delay=15&type=N0R&frame=0&scale=1.000&noclutter=0&t=1371131508&lat=40.10094070&lon=-83.01473999&label=Worthington%2C+OH&showstorms=10&map.x=400&map.y=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=0&lightning=0&smooth=0
+http://radar.weather.gov/Conus/Loop/centgrtlakes_loop.gif
+http://radar.weather.gov/Conus/Loop/NatLoop.gif
+
+gloustah
+http://forecast.weather.gov/MapClick.php?CityName=Glouster&state=OH&site=RLX&textField1=39.5028&textField2=-82.0848&e=0
+http://forecast.weather.gov/MapClick.php?lat=39.50280&lon=-82.0848&unit=0&lg=english&FcstType=graphical
+http://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=RLX&brand=wui&num=6&delay=15&type=N0R&frame=0&scale=1.000&noclutter=0&lat=39.50154114&lon=-82.09248352&label=Glouster%2C+OH&showstorms=0&map.x=400&map.y=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=0&lightning=0&smooth=0
+http://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=RLX&brand=wui&num=6&delay=15&type=N0R&frame=0&scale=1.000&noclutter=0&lat=39.50154114&lon=-82.09248352&label=Glouster%2C+OH&showstorms=10&map.x=400&map.y=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=0&lightning=0&smooth=0
+http://radar.weather.gov/radar.php?rid=rlx&product=N0R&overlay=11101111&loop=no
+http://radar.weather.gov/Conus/Loop/centgrtlakes_loop.gif
+http://radar.weather.gov/Conus/Loop/NatLoop.gif
+
+http://radar.weather.gov/Conus/centgrtlakes_loop.php
+http://radar.weather.gov/Conus/full_loop.php
+http://www.wunderground.com/radar/radblast.asp?zoommode=pan&prevzoom=zoom&num=6&frame=0&delay=15&scale=1.000&noclutter=0&ID=RLX&type=N0R&showstorms=0&lat=39.50154114&lon=-82.09248352&label=Glouster,%20OH&map.x=400&map.y=240&scale=1.000&centerx=400&centery=240&showlabels=1&rainsnow=0&lightning=0&lerror=20&num_stns_min=2&num_stns_max=9999&avg_off=9999&smooth=0
+http://radblast-sf.wunderground.com/cgi-bin/radar/WUNIDS_composite_archive?centerlat=38.33358002&centerlon=-81.74607849&radius=124&newmaps=1&type=N0R&type2=TR0&num=24&SD.epoch=1383868800&ED.epoch=1383955199&DELAY=60&delay=20&width=640&height=480
