@@ -30,10 +30,18 @@ Once per Linux user:
 
 once per project: create new environment
 
-    # must specify packages for project. cannot create empty environment
-    # try to install all packages at once to avoid version skew problems
+    # Must specify at least package for environment.
+    # Can not create empty environment.
+    # Try to install all packages at once to avoid version skew problems.
 
+    # Specifying particular version of python satisfies conda.
+    conda create --name myproject python==3.5.2
+
+    # Specify package I don't care about, configobj, to satisfy conda.
     conda create --name myproject configobj
+
+    # Create environment with newest version of Python 3.
+    conda create --name snakes python=3
 
 to begin using an environment:
 
@@ -45,17 +53,45 @@ to quit using an environment:
 
 miscellaneous
 
+    --name specifies environment to mess with
+
     # to get help
     conda whatevercommand -h
 
-    # list all environments
+    # list all environments (does not work for me: version skew?)
     conda list --envs
 
     # lists environment names and paths. '*' indicates active environment
     conda info --envs
 
-    # list versions of python available
-    conda list python
+    # list versions of packages currently  available in an environment
+    # environment default to current environment?
+    # package arguments are regular expressions
+
+        # list all packages and versions in current environment
+        conda list
+
+        # list all packages and versions in "bunnies" environment
+        # ("bunnies" environment does not have to be active)
+        conda list --name "bunnies"
+
+        # list packagese and versions with "python" anywhere in package name
+        # in current environment
+        conda list python
+
+        # list package and version of python in current environment
+        conda list ^python$
+
+        # list package and version of configobj in current environment
+        conda list ^configobj$
+
+        # list package and version of python in bunnies environment
+        # ("bunnies" environment does not have to be active)
+        conda list --name bunnies ^python$
+
+        # list package and version of configobj in bunnies environment
+        # ("bunnies" environment does not have to be active)
+        conda list --name bunnies ^configobj$
 
     anaconda search -t conda pytest-xdist
 
@@ -65,17 +101,29 @@ miscellaneous
     # show python and package versions installed in current environment
     conda list
 
-    # check to see if package is available by conda for current python
+    # check web for packages and versions with
+    # "beautiful-soup" anywhere in package name
     conda search beautiful-soup
 
+    # check web for packages and versions with
+    # "python" anywhere in package name
+    conda search python
+
+    # check web for packages and versions for python package name
+    conda search ^python$
+
     # install package in an environment (does not have to be active)
+    # installs beautiful-soup in bunnies environment
     conda install --name bunnies beautiful-soup
 
     # update a package
     conda update --name bunnies beautiful-soup
 
-    # remove package in an environment (does not have to be active)
+    # remove package from an environment (does not have to be active)
     conda remove --name bunnies beautiful-soup
+
+    # remove an environment
+    conda remove --name bunnies --all
 
     # for packages that conda can not install,
     # use pip within a conda environment
