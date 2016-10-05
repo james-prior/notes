@@ -182,8 +182,20 @@ redo commits:
 
     most recent:
 
+        # --amend -m is slightly dangerous for me.
+        # I often fetch a previous commit command from history and edit it.
+        # When that command has --amend -m in it,
+        # sometimes I neglect to notice and delete the --amend option
+        # and accidentally add current changes to an old commit.
         git commit --amend -m 'new comment'
-        git commit --amend ;# drops into editor
+
+        # --amend without -m is safer for me.
+        # Since it puts me in an editor,
+        # it is obvious that I am doing an append.
+        # It is easy to bail out of amended commit from editor
+        # by deleting the whole comment.
+        # Then I can do a new non-amended commit.
+        git commit --amend ;# goes into editor
 
     older commits:
 
