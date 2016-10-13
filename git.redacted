@@ -213,6 +213,31 @@ to push repo to github that was not cloned from github
 
     git push -u origin master
 
+using meld for external diff on ad-hoc basis
+
+    gdm shows differences uses meld.
+
+    gdm ;# shows diffs for all files with meld, one at a time
+    gdm foo ;# shows diffs for file foo with meld, one at a time
+
+    setup
+
+        sudo apt-get install meld
+
+        doj@4519_n_high:~$ cat bin/gdm
+        #!/bin/sh
+
+        # Does git diff with external diff program,
+        #     even if diff=whatever is not specified in .gitattributes
+        #     even if [diff "whatever"] is not specified in ~/.gitconfig.
+
+        GIT_EXTERNAL_DIFF=git-ext-diff-wrapper git diff "$@"
+        doj@4519_n_high:~$ cat bin/git-ext-diff-wrapper
+        #!/bin/sh
+
+        meld "$2" "$5"
+        doj@4519_n_high:~$ 
+
 ###############################################################################
 
 for repo in `git remote`; do echo "$repo:";git fetch "$repo";done
