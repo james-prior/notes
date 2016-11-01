@@ -215,16 +215,16 @@ to push repo to github that was not cloned from github
 
 using meld for external diff on ad-hoc basis
 
-    gdm shows differences uses meld.
+    gmd shows differences uses meld.
 
-    gdm ;# shows diffs for all files with meld, one at a time
-    gdm foo ;# shows diffs for file foo with meld, one at a time
+    gmd ;# shows diffs for all files with meld, one at a time
+    gmd foo ;# shows diffs for file foo with meld, one at a time
 
     setup
 
         sudo apt-get install meld
 
-        doj@4519_n_high:~$ cat bin/gdm
+        doj@4519_n_high:~$ cat bin/gmd
         #!/bin/sh
 
         # Does git diff with external diff program,
