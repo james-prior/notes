@@ -1,15 +1,23 @@
-Mad Man Muntz Version of how to use git
+Mad Man Muntz Version of how to use git for standalone repository.
 
-once per user: 
+once per user:
 
     git config --global user.name 'John Doe'
     git config --global user.email 'john.doe@example.com'
     git config --global core.autocrlf input
-    git config --global core.safecrlf false
+    git config --global core.safecrlf true
+    # I am confused about what values autocrlf and safecrlf should have.
+    # Every time I read the documentation about them,
+    # I just become more confused.
+
+    # For text files that need to have CRLF line endings,
+    # (on an OS that does not use CRLF line endings)
+    # add a line in .gitattributes like:
+    # *.csv text eol=crlf
 
 once per repository:
 
-    # Repository lives in a directory.
+    # Repository lives in a directory (foo in example below).
     # Execute all git comamnds in that directory or subdirectories thereof.
     mkdir foo
     cd foo
@@ -17,7 +25,7 @@ once per repository:
 
     git ci --allow-empty -m 'Start with empty commit.' ;# Eases later rebasing.
 
-once per version (aka "commit" in git-speak): 
+once per version (aka "commit" in git-speak):
 
     if not first version:
         get checkout master
@@ -29,7 +37,8 @@ once per version (aka "commit" in git-speak):
 list versions:
 
     git log
-    git log --pretty-format
+    git log -1
+    git log --pretty=oneline
     git log --all
     git log --all --pretty-format
     git log --all --pretty-format="%h %cd %ad %an %ac"
@@ -41,13 +50,16 @@ list versions:
     git log --pretty=oneline --author='James Prior'
     git log --all --pretty=format:"%h %cd %s (%an)" --since='7 days ago'
     git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
+
+list tags and branches
+
     git tag ;# list tags
     git branch
     git branch -v ;# show hash and commit comment.
     git branch -a ;# show remote branches also
     git branch -a -v ;# both
 
-get a version of code from repository: 
+get a version of code from repository:
 
     git checkout master ;# branch name
     git checkout v1.n ;# tag name
