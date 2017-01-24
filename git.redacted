@@ -6,11 +6,10 @@ once per user:
     git config --global user.email 'john.doe@example.com'
     git config --global core.autocrlf input
     git config --global core.safecrlf true
-    # I am confused about what values autocrlf and safecrlf should have.
-    # Every time I read the documentation about them,
-    # I just become more confused.
+    # I am confused about what value autocrlf should have.
+    # Every time I read the documentation about it, I become more confused.
 
-    # For text files that need to have CRLF line endings,
+    # For text files that must have CRLF line endings,
     # (on an OS that does not use CRLF line endings)
     # add a line in .gitattributes like:
     # *.csv text eol=crlf
