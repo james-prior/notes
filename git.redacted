@@ -69,6 +69,56 @@ get a version of code from repository:
 
 ###############################################################################
 
+Mad Man Muntz Version of how to use git for with remote repository.
+
+once per user:
+
+    same as for standalone repository above.
+
+once per repository:
+
+    git clone repourl
+    cd reponame
+
+once per version (aka "commit" in git-speak):
+
+    (same as for standalone repo:)
+        if not first version:
+            get checkout master ;# or some other branch name
+        vi *
+        git add * ;# * is of files one wants to track in repository
+        git commit -m 'short explanation of this version'
+        git tag v1.n
+    (for remote repo only)
+        git push origin master
+
+to get new stuff from remote repo:
+
+    git fetch origin
+    git fetch remotereponame
+
+to use stuff from remote repo:
+
+    git merge remotereponame/remoterepobranchname
+    git merge origin/master
+
+list versions, tags, and branches
+
+    same as standalone repo
+
+get a version of code from repository:
+
+    same as standalone repo, plus
+
+        git checkout remotereponame/remotebranchname
+
+list remote repositories (known tersely as remotes)
+
+    git remote
+    git remote -v
+
+###############################################################################
+
 # My .ssh/config allows me to say just github instead of github.com
 # for some protocols:
 
