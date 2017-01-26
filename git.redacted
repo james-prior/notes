@@ -133,16 +133,44 @@ list remote repositories (known tersely as remotes)
 
 ###############################################################################
 
+git clone
+
+    git clone <repourl>
+
+    In the current working directory, makes directory from project name.
+    We will call that directory, the project directory.
+    Puts repo in the project directory.
+    The .git directory will be a subdirectory of the project directory.
+    Does not cd (change directory) into the project directory.
+
+    Creates a remote with URL.
+    That informtion is stored in .git/config of repo directory.
+
+After doing git clone, to do git stuff with that cloned repo,
+one needs to be in the project directory, or some subdirectory thereof.
+A common mistake I make after cloning a repo,
+is to forget to cd into the project directory.
+Then I am baffled why my git commands do not work.
+
 git clone examples
 
-In the current working directory, makes directory from project name.
-Puts repo in that subdirectory named after project.
-The .git directory will be in a subdirectory of that project directory.
+    # These git clone examples are mostly about URLs.
+    # These URLS are relevant for git remote commands.
 
-    # with ssh setup right, these do not ask for password
+    # With ssh setup right, these do not ask for password.
+    # Also, with my ~/.ssh/config, I can use github instead of github.com.
     git clone git@github:james-prior/challenge-201604-words.git
     git clone git@github:james-prior/challenge-201604-words ;# works w/o .git
     git clone git@github.com:james-prior/challenge-201604-words ;# works too
+    # general URL format for github:
+    # git@github.com:accountname/projectname.git
+    #
+    # Note that the project name is appended with .git
+    # because a repo on github is a bare repo.
+    # I.e., there is no '/' between projectname and '.git'.
+    #
+    # Empirically, they seem to work without the .git suffix,
+    # but I don't know if that is a good idea.
 
     # probably can not push later with these urls
     git clone git://github.com/pydata/pandas.git
@@ -155,16 +183,36 @@ The .git directory will be in a subdirectory of that project directory.
     git clone https://github.com/chalmerlowe/data_generator ;# works w/o .git
     git clone https://github/chalmerlowe/data_generator.git ;# bad
     git clone https://github.com/pydata/pandas.git
+    # general format for github:
+    # https://github.com/accountname/projectname.git
+    #
+    # Note that the project name is appended with .git
+    # because a repo on github is a bare repo.
+    # I.e., there is no '/' between projectname and '.git'.
+    #
+    # Empirically, they seem to work without the .git suffix,
+    # but I don't know if that is a good idea.
+    #
+    # Can not use github instead of github.com,
+    # probably because https does not consult my ~/.ssh/config.
 
-    # with ssh setup right, these do not ask for password
-    git clone doj@casual:i/dojo/.git ;# path relative to home
-    git clone doj@casual:/home/doj/i/dojo/.git ;# absolute path
-    git clone ssh://doj@casual/home/doj/i/dojo/.git ;# must have absolute path
+    # These are good for accessing remote repo that is accessible only by ssh.
+    # I.e., that does not have a web server or git server.
+    #
+    # With ssh setup right, these do not ask for password.
+    git clone doj@relax:i/dojo/.git ;# path relative to home
+    git clone doj@relax:/home/doj/i/dojo/.git ;# absolute path
+    git clone ssh://doj@relax/home/doj/i/dojo/.git ;# must have absolute path
+    # Note that the project name is appended with /.git
+    # which is a directory of a normal (not bare) repo.
 
+    # For accessing repo on local machine.
     # can use relative or absolute paths
-    # like rsync, but has origin for fetch/push
     git clone ~/i/dojo/.git
     git clone /home/doj/i/dojo/.git
+    # uses hard links by default. might not want that when paranoid
+    # Note that the project name is appended with /.git
+    # which is a directory of a normal (not bare) repo.
 
 ###############################################################################
 
