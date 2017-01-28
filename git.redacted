@@ -122,14 +122,14 @@ list remote repositories (known tersely as remotes)
 # My .ssh/config allows me to say just github instead of github.com
 # for some protocols:
 
-    [doj@panera ~]$ cat .ssh/config
+    [doj@pan ~]$ cat .ssh/config
     ...
     Host github github.com
         Hostname github.com
         IdentityFile ~/.ssh/github-id_rsa
         User james-prior
     ...
-    [doj@panera ~]$ 
+    [doj@pan ~]$ 
 
 ###############################################################################
 
@@ -243,31 +243,31 @@ Starting with a command like the following:
 avoids the need to edit the url value in .git/config.
 
                             git@github.com:james-prior/challenge-201604-words.git
-[doj@panera git]$ git clone git@github:james-prior/challenge-201604-words.git
+[doj@pan git]$ git clone git@github:james-prior/challenge-201604-words.git
 
-[doj@panera git]$ cd challenge-201604-words/
-[doj@panera challenge-201604-words]$ git remote -v
+[doj@pan git]$ cd challenge-201604-words/
+[doj@pan challenge-201604-words]$ git remote -v
 origin  git@github:james-prior/challenge-201604-words.git (fetch)
 origin  git@github:james-prior/challenge-201604-words.git (push)
-[doj@panera challenge-201604-words]$ 
+[doj@pan challenge-201604-words]$ 
 
-[doj@panera git]$ git clone https://github.com/james-prior/challenge-201604-words.git
-[doj@panera git]$ cd challenge-201604-words/
-[doj@panera challenge-201604-words]$ git remote -v
+[doj@pan git]$ git clone https://github.com/james-prior/challenge-201604-words.git
+[doj@pan git]$ cd challenge-201604-words/
+[doj@pan challenge-201604-words]$ git remote -v
 origin  https://github.com/james-prior/challenge-201604-words.git (fetch)
 origin  https://github.com/james-prior/challenge-201604-words.git (push)
-[doj@panera challenge-201604-words]$ 
+[doj@pan challenge-201604-words]$ 
 
 ssh remotes:
 
     git remote add casual doj@casual:challenge-201604-words/.git
                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        [doj@panera challenge-201604-words]$ git remote -v
+        [doj@pan challenge-201604-words]$ git remote -v
         casual  doj@casual:challenge-201604-words/.git (fetch)
         casual  doj@casual:challenge-201604-words/.git (push)
         origin  git@github:james-prior/challenge-201604-words.git (fetch)
         origin  git@github:james-prior/challenge-201604-words.git (push)
-        [doj@panera challenge-201604-words]$ 
+        [doj@pan challenge-201604-words]$ 
 
         Note that the ^'ed part is the relative path of the git directory,
         relative to the user's home.
@@ -276,12 +276,12 @@ ssh remotes:
 
     git remote add casual ssh://doj@casual/home/doj/challenge-201604-words/.git
                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        [doj@panera challenge-201604-words]$ git remote -v
+        [doj@pan challenge-201604-words]$ git remote -v
         casual  ssh://doj@casual/home/doj/challenge-201604-words/.git (fetch)
         casual  ssh://doj@casual/home/doj/challenge-201604-words/.git (push)
         origin  git@github:james-prior/challenge-201604-words.git (fetch)
         origin  git@github:james-prior/challenge-201604-words.git (push)
-        [doj@panera challenge-201604-words]$ git fetch 
+        [doj@pan challenge-201604-words]$ git fetch 
 
         Note that the ^'ed part is the absolute path of the git directory.
         (typically ending with /projectname/.git for non-bare repos)
@@ -336,7 +336,7 @@ using meld for external diff on ad-hoc basis
 
         sudo apt-get install meld
 
-        doj@4519_n_high:~$ cat bin/gmd
+        doj@pan:~$ cat bin/gmd
         #!/bin/sh
 
         # Does git diff with external diff program,
@@ -344,11 +344,11 @@ using meld for external diff on ad-hoc basis
         #     even if [diff "whatever"] is not specified in ~/.gitconfig.
 
         GIT_EXTERNAL_DIFF=git-ext-diff-wrapper git diff "$@"
-        doj@4519_n_high:~$ cat bin/git-ext-diff-wrapper
+        doj@pan:~$ cat bin/git-ext-diff-wrapper
         #!/bin/sh
 
         meld "$2" "$5"
-        doj@4519_n_high:~$ 
+        doj@pan:~$ 
 
 ###############################################################################
 
