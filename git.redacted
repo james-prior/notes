@@ -260,11 +260,11 @@ origin  https://github.com/james-prior/challenge-201604-words.git (push)
 
 ssh remotes:
 
-    git remote add casual doj@casual:challenge-201604-words/.git
-                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    git remote add relax doj@relax:challenge-201604-words/.git
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
         [doj@pan challenge-201604-words]$ git remote -v
-        casual  doj@casual:challenge-201604-words/.git (fetch)
-        casual  doj@casual:challenge-201604-words/.git (push)
+        relax  doj@relax:challenge-201604-words/.git (fetch)
+        relax  doj@relax:challenge-201604-words/.git (push)
         origin  git@github:james-prior/challenge-201604-words.git (fetch)
         origin  git@github:james-prior/challenge-201604-words.git (push)
         [doj@pan challenge-201604-words]$ 
@@ -274,11 +274,11 @@ ssh remotes:
         (typically ending with projectname/.git for non-bare repos)
         (typically ending with projectname.git for bare repos)
 
-    git remote add casual ssh://doj@casual/home/doj/challenge-201604-words/.git
-                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    git remote add relax ssh://doj@relax/home/doj/challenge-201604-words/.git
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         [doj@pan challenge-201604-words]$ git remote -v
-        casual  ssh://doj@casual/home/doj/challenge-201604-words/.git (fetch)
-        casual  ssh://doj@casual/home/doj/challenge-201604-words/.git (push)
+        relax  ssh://doj@relax/home/doj/challenge-201604-words/.git (fetch)
+        relax  ssh://doj@relax/home/doj/challenge-201604-words/.git (push)
         origin  git@github:james-prior/challenge-201604-words.git (fetch)
         origin  git@github:james-prior/challenge-201604-words.git (push)
         [doj@pan challenge-201604-words]$ git fetch 
@@ -319,7 +319,7 @@ redo commits:
 
 to forget remote branches from local repo that no longer exist on remote repo:
 
-    git remote prune casual
+    git remote prune relax
 
 to push repo to github that was not cloned from github
 
