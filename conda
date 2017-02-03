@@ -5,9 +5,9 @@ Once per Linux user:
     bash /home/dojo/conda/repo.continuum.io/miniconda/Miniconda-latest-Linux-x86.sh
     (follow defaults)
     
-    Edit .bashrc to append its directory instead of prepending it. E.g.:
+    Edit .bashrc to append conda's directory instead of prepending it. E.g.:
 
-        dojo@4519_n_high:~$ diff .bashrc-before-miniconda .bashrc
+        dojo@pan:~$ diff .bashrc-before-miniconda .bashrc
         134a135,140
         > 
         > #!!!# added by Miniconda 3.10.1 installer
@@ -15,7 +15,7 @@ Once per Linux user:
         > 
         > # modified by dojo to _append_ instead of prepend
         > export PATH="$PATH:/home/dojo/miniconda/bin"
-        dojo@4519_n_high:~$ 
+        dojo@pan:~$ 
 
     Close terminal window and open new terminal window to use above changes.
 
@@ -24,7 +24,7 @@ Once per Linux user:
         conda --version
 
     Install anaconda-client tool.
-    You will need it eventually. Might as well get it down now.
+    You will need it eventually. Might as well get it done now.
 
         conda install anaconda-client
 
@@ -64,7 +64,7 @@ miscellaneous
     # lists environment names and paths. '*' indicates active environment
     conda info --envs
 
-    # list versions of packages currently  available in an environment
+    # list versions of packages currently available in an environment
     # environment default to current environment?
     # package arguments are regular expressions
 
@@ -75,7 +75,7 @@ miscellaneous
         # ("bunnies" environment does not have to be active)
         conda list --name "bunnies"
 
-        # list packagese and versions with "python" anywhere in package name
+        # list packages and versions with "python" anywhere in package name
         # in current environment
         conda list python
 
@@ -138,6 +138,17 @@ miscellaneous
 
     # uninstall miniconda
     # rm -rf ~/miniconda
+
+    # some packages, such as pytest-xdist, are not available by conda itself,
+    # but can be installed by pip within the conda environment.
+    # If the only package one wants is one not available with conda,
+    # create a conda environment with a sacrificial package that conda does
+    # have, then use pip within the conda environment, then use conda to remove
+    # the sacrificial package.
+    conda create --name foo configobj
+    source activate foo
+    pip install pytest-xdist
+    conda remove configobj
 
 # environments/projects are subdirectories of /home/dojo/miniconda/envs
 # One can go directly from one environment to another.
