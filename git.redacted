@@ -104,7 +104,7 @@ to use stuff from remote repo:
 
 list versions, tags, and branches
 
-    same as standalone repo
+    same as for standalone repo
 
 get a version of code from repository:
 
@@ -234,9 +234,6 @@ git push remotename --delete remotebranchname ;#new way to delete remote branch
 
 fatter version
 
-#! deprecated: After one does git clone with whatever URL,
-#! deprecated: edit the url in .git/config to make the remote repo happy.
-
 Starting with a command like the following:
     git clone git@github:james-prior/ansible-modules-core.git
     git clone git@github.com:james-prior/ansible-modules-core.git
@@ -281,7 +278,7 @@ ssh remotes:
         relax  ssh://doj@relax/home/doj/challenge-201604-words/.git (push)
         origin  git@github:james-prior/challenge-201604-words.git (fetch)
         origin  git@github:james-prior/challenge-201604-words.git (push)
-        [doj@pan challenge-201604-words]$ git fetch 
+        [doj@pan challenge-201604-words]$ git fetch
 
         Note that the ^'ed part is the absolute path of the git directory.
         (typically ending with /projectname/.git for non-bare repos)
@@ -336,7 +333,7 @@ using meld for external diff on ad-hoc basis
 
         sudo apt-get install meld
 
-        doj@pan:~$ cat bin/gmd
+        doj@pan:~$ cat ~/bin/gmd
         #!/bin/sh
 
         # Does git diff with external diff program,
@@ -344,7 +341,7 @@ using meld for external diff on ad-hoc basis
         #     even if [diff "whatever"] is not specified in ~/.gitconfig.
 
         GIT_EXTERNAL_DIFF=git-ext-diff-wrapper git diff "$@"
-        doj@pan:~$ cat bin/git-ext-diff-wrapper
+        doj@pan:~$ cat ~/bin/git-ext-diff-wrapper
         #!/bin/sh
 
         meld "$2" "$5"
