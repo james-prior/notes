@@ -58,10 +58,10 @@ miscellaneous
     # to get help
     conda whatevercommand -h
 
-    # list all environments (does not work for me: version skew?)
-    conda list --envs
+    # lists all environment names and paths. '*' indicates active environment
+    conda-env list
 
-    # lists environment names and paths. '*' indicates active environment
+    # lists all environment names and paths. '*' indicates active environment
     conda info --envs
 
     # list versions of packages currently available in an environment
