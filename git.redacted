@@ -183,6 +183,7 @@ git clone examples
     git clone https://github.com/chalmerlowe/data_generator ;# works w/o .git
     git clone https://github/chalmerlowe/data_generator.git ;# bad
     git clone https://github.com/pydata/pandas.git
+    git clone https://doj@bitbucket.org/cohpy/challenge-201604-words.git
     # general format for github:
     # https://github.com/accountname/projectname.git
     #
@@ -203,7 +204,9 @@ git clone examples
     git clone doj@relax:i/dojo/.git ;# path relative to home
     git clone doj@relax:/home/doj/i/dojo/.git ;# absolute path
     git clone ssh://doj@relax/home/doj/i/dojo/.git ;# must have absolute path
-    # Note that the project name is appended with /.git
+    git clone ssh://git@bitbucket.org/cohpy/challenge-201604-words.git
+    # Note that (except for bitbucket)
+    # the project name is appended with /.git
     # which is a directory of a normal (not bare) repo.
 
     # For accessing repo on local machine.
