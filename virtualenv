@@ -40,6 +40,10 @@ Installation
         I prefer the first technique, because it gets newest version of virtualenv
         (with newest version of pip inside virtualenv).
 
+            2017-03-10 addendum:
+
+                Amen! Use the first technique! Shun the second technique!
+
         First technique uses pip to install virtualenv at system level.
 
             This installs the latest version of virtualenv by default,
@@ -59,6 +63,19 @@ Installation
             #     1.5.6 outside virtualenv
             #     6.1.1 inside virtualenv
 
+            2017-03-10 addendum:
+
+                The above commands run as root still work fine.
+                They get even newer version of pip and virtualenv.
+                Installing them with the following sudo commands does not work.
+                virtualenv will be unhappy.
+                I expected the sudo commands to work,
+                but the virtualenv they install crashes.
+                Don't know why.
+
+                sudo yum install python-pip
+                sudo pip install virtualenv
+
         Other technique uses yum to install virtualenv at system level.
 
             # Installing epel makes python-pip available
@@ -69,6 +86,13 @@ Installation
             [root@foo]# yum install python-virtualenv
             # got version 1.10.1 (2013-08-07 vintage) (with pip version 1.4.1 inside virtualenv)
             # Note that there is no pip at system level
+
+            2017-03-10 addendum:
+
+                Do not do this.
+
+                Version 1.10.1 of virtualenv (and/or version 1.4.1 of pip within it)
+                are too old for use with pip-compile of pip-tools.
 
     for Xubuntu 12.10
 
