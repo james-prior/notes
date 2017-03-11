@@ -66,7 +66,10 @@ Installation
             2017-03-10 addendum:
 
                 The above commands run as root still work fine.
-                They get even newer version of pip and virtualenv.
+                They install even newer versions now.
+                They install version 15.1.0 of virtualenv
+                (and version 9.0.1 of pip within it).
+
                 Installing them with the following sudo commands does not work.
                 virtualenv will be unhappy.
                 I expected the sudo commands to work,
@@ -76,7 +79,10 @@ Installation
                 sudo yum install python-pip
                 sudo pip install virtualenv
 
-        Other technique uses yum to install virtualenv at system level.
+        Second technique uses yum to install virtualenv at system level.
+
+            Do not use this technique because it installs such an ancient
+            version virtualenv (and similarly ancient version of pip within it).
 
             # Installing epel makes python-pip available
             [root@foo]# rpm -ivh http://mirror.compevo.com/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
@@ -91,8 +97,10 @@ Installation
 
                 Do not do this.
 
-                Version 1.10.1 of virtualenv (and/or version 1.4.1 of pip within it)
-                are too old for use with pip-compile of pip-tools.
+                This installs version 1.10.1 of virtualenv
+                (and/or version 1.4.1 of pip within it)
+                are too old for use with pip-compile of pip-tools,
+                and likely other things.
 
     for Xubuntu 12.10
 
