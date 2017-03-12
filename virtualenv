@@ -81,26 +81,66 @@ Installation
 
         Second technique uses yum to install virtualenv at system level.
 
-            Do not use this technique because it installs such an ancient
-            version virtualenv (and similarly ancient version of pip within it).
+            This is not recommended.
 
-            # Installing epel makes python-pip available
-            [root@foo]# rpm -ivh http://mirror.compevo.com/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
-            # Key ID  4096R/352C64E5 2013-12-16
-            # Fingerprint     91E9 7D7C 4A5E 96F1 7F3E 888F 6A2F AEA2 352C 64E5
-            # uid     Fedora EPEL (7) <epel@fedoraproject.org>
-            [root@foo]# yum install python-virtualenv
-            # got version 1.10.1 (2013-08-07 vintage) (with pip version 1.4.1 inside virtualenv)
-            # Note that there is no pip at system level
+            The nice thing about this technique is that things installed at the
+            system level are installed only with the system package manager
+            (rpm/yum). Unfortunately, the version of virtualenv installed (and
+            the version of pip that virtualenv makes available within a virtual
+            environment) are so old, that it breaks many modern packages. So
+            using rpm/yum to install virtualenv (at system level) is not
+            recommended.
 
-            2017-03-10 addendum:
+            2017-03-12 on Centos 7.2:
+            [root@pan ~]# yum install epel-release
+            [root@pan ~]# yum install python-virtualenv                                      
+            Installed:
+              python-virtualenv.noarch 0:1.10.1-3.el7                                       
+            [root@pan ~]# virtualenv --version
+            1.10.1
+            [root@pan ~]# pip --version
+            -bash: /bin/pip: No such file or directory
+            # It is ok that pip is not installed at system level.
+            [root@pan ~]# python
+            Python 2.7.5 (default, Nov  6 2016, 00:28:07) 
+            [GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux2
+            Type "help", "copyright", "credits" or "license" for more information.
+            >>> 
+            [root@pan ~]# 
 
-                Do not do this.
-
-                This installs version 1.10.1 of virtualenv
-                (and/or version 1.4.1 of pip within it)
-                are too old for use with pip-compile of pip-tools,
-                and likely other things.
+            [doj@pan ~]$ mkdir foo
+            [doj@pan ~]$ cd foo
+            [doj@pan foo]$ virtualenv env
+            New python executable in env/bin/python
+            ...
+            [doj@pan foo]$ source env/bin/activate
+            (env)[doj@pan foo]$ virtualenv --version
+            1.10.1
+            (env)[doj@pan foo]$ pip --version
+            pip 1.4.1 from /home/doj/foo/env/lib/python2.7/site-packages (python 2.7)
+            (env)[doj@pan foo]$ python
+            Python 2.7.5 (default, Nov  6 2016, 00:28:07) 
+            [GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux2
+            Type "help", "copyright", "credits" or "license" for more information.
+            >>> 
+            (env)[doj@pan foo]$ pip install pip_check_reqs pip-tools
+            # seemed to install successfully, but it was not really successful
+            (env)[doj@pan foo]$ echo jsonschema >requirements.txt 
+            (env)[doj@pan foo]$ pip-compile --output-file requirements.txt requirements.in
+            ValueError: ('Expected version spec in', u'functools32; python_version == "2.7"'
+            , 'at', u'; python_version == "2.7"')
+            (env)[doj@pan foo]$ deactivate 
+            [doj@pan foo]$ virtualenv --version
+            1.10.1
+            [doj@pan foo]$ pip --version
+            bash: pip: command not found...
+            # Again, it is ok that pip is not installed at system level.
+            [doj@pan foo]$ python
+            Python 2.7.5 (default, Nov  6 2016, 00:28:07) 
+            [GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux2
+            Type "help", "copyright", "credits" or "license" for more information.
+            >>> 
+            [doj@pan foo]$ 
 
     for Xubuntu 12.10
 
