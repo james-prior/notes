@@ -79,8 +79,8 @@ panes
 ^A{ move current pane "left"
 ^A} move current pane "right"
 ^Ao switch to next pane
-^Aq briefly show pane number
-    (then quickly type that number to switch to that pane)
+^Aq briefly show pane numbers
+    (then quickly type a number to switch to that pane)
 ^Az toggle panel zoom (make pane full size)
 ^A! convert pane to a window
 ^A<arrowkey> switch to adjacent pane (long delay between ^A and arrowkey)
