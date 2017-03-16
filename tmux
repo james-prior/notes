@@ -65,6 +65,8 @@ windows
 ^An goto next window
 ^A0 goto window 0
 ^A9 goto window 9
+:select-window -t :n
+    where n is window number, which may be >= 10
 ^A& close current window
 
 swap windows number 2 and 1
@@ -91,5 +93,11 @@ panes
 ###############################################################################
 misc
 
+^At show clock
+^A? show shortcuts
+
 :set -g OPTION          set OPTION for all sessions
 :setw -g OPTION         set OPTION for all windows (of current session?)
+
+https://gist.github.com/MohamedAlaa/2961058
+https://gist.github.com/andreyvit/2921703
