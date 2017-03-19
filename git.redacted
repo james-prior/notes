@@ -358,3 +358,9 @@ for repo in `git remote`; do echo "$repo:";git fetch "$repo";done
 
 git can not add a completely empty directory,
 so a convention of putting an empty file named ".gitkeep" has been created.
+
+todo:
+
+    study
+        https://schacon.github.io/git/git-rev-parse.html
+        http://stevelosh.com/blog/2013/04/git-koans/
