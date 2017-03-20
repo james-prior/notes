@@ -116,6 +116,10 @@ miscellaneous
     # installs beautiful-soup in bunnies environment
     conda install --name bunnies beautiful-soup
 
+    # without asking for confirmation, install package in active environment
+    # installs beautiful-soup in active environment
+    conda install --yes beautiful-soup
+
     # install packages listed in a file
     # into an environment (does not have to be active)
     conda install --name bunnies --file requirements.txt
