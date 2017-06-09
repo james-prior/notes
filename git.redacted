@@ -22,6 +22,7 @@ once per repository:
     cd foo
     git init
 
+    # following is standard practice for me. most people do not do it
     git ci --allow-empty -m 'Start with empty commit.' ;# Eases later rebasing.
 
 once per version (aka "commit" in git-speak):
