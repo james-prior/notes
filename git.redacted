@@ -29,8 +29,9 @@ once per version (aka "commit" in git-speak):
 
     if not first version:
         get checkout master
-    vi *
-    git add * ;# * is of files one wants to track in repository
+    vi somefiles
+    git add somefiles
+    # git ignores files that have never been added
     git commit -m 'short explanation of this version'
     git tag v1.n
 
