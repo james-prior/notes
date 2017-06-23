@@ -48,10 +48,6 @@ list versions:
     git log --pretty=oneline -2 ;# same as --max-count=2
     git log --pretty=oneline --since='5 minutes ago'
     git log --pretty=oneline --until='5 minutes ago'
-    git log --pretty=oneline --author='James Prior'
-    git log --all --pretty=format:"%h %cd %s (%an)" --since='7 days ago'
-    git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
-    git log --pretty=oneline --until='5 minutes ago'
     git log --pretty=oneline --author='John Doe'
     git log --all --pretty=format:"%h %cd %s (%an)" --since='7 days ago'
     git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
