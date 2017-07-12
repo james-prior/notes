@@ -1,0 +1,3 @@
+only user that mounted it can access the files.
+
+If ordinary use mounts, root can not access the files. 
