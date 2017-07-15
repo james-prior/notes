@@ -1,0 +1,144 @@
+// normal way
+
+class foo
+{
+	public:
+
+	foo()
+	{
+	}
+
+	virtual ~foo()
+	{
+	}
+
+	void a()
+	{
+		printf ("a\n");
+	}
+
+	void b()
+	{
+		printf ("b\n");
+	}
+
+};
+
+foo z;
+
+int main()
+{
+	foo x;
+}
+
+--------------------------------------------------------------
+// arduino:
+
+class foo
+{
+	public:
+
+	foo()
+	{
+	}
+
+	virtual ~foo()
+	{
+	}
+
+	// jon's technique for arduino
+	void setup(void)
+	{
+	}
+
+	void a()
+	{
+		this->goo = 923874;
+		goo = 923874; // same as above line
+		printf ("a\n");
+	}
+
+	void b()
+	{
+		printf ("b\n");
+	}
+
+};
+
+foo z;
+
+void setup(void)
+//z.foo() has been called before setup() starts
+{
+	z.setup();
+}
+
+void loop(void)
+{
+	static bool first_time=true;
+	static foo x; // statically created
+
+	if (first_time) {
+		first_time=false;
+		// do first_time stuff
+		foo y; // dynamically creates object on stack
+	}
+	foo x;
+}
+
+#if 0 // jon's guess (and he's not found anything to indicate otherwise)
+// constructors for global objects are called before main() is called.
+int main(...)
+{
+	... magic initialization stuff
+	setup();
+	for (;;)
+		loop();
+}
+#endif
+
+For project xyz, arduino requires all its source code files to be in a
+directory of the same name (xyz) and a file in it to be named xyz.ino.
+The .ino filename ending means (diminutive suffix???)
+from the main .ino file, #include stuff to get the "cat" linker to incorporate
+them in the project,
+even if that main .ino file does not use anything in that header file.
+other C++ files could be .cpp
+
+When installing arduino ide, it creates a directory, named "libraries" for one
+to put local libraries. Each library will have its own subdirectory with header
+and cpp files.
+For example, for jon, there will be a GPSParser directory in the libraries
+directory.
+In that GPSParser is GPSParser.h and .cpp files.
+There will NOT be a GPSParser.ino file.
+
+Projects! (and maybe other libaries?) can include that GPSParser.h file
+with a #include <GPSParser.h>
+Within a project, one includes files with #include "whatever.h".
+Can not do relative includes at all in any. cat rules.
+
+#include <servo.h>
+
+Servo myservo(optional parameters for constructor);
+
+--------------------------------------
+
+AVR is harvard, two address spaces
+Quoted strings work, but are wasteful.
+They exist in ROM and are copied to RAM at startup.
+So their use should be severely restricted.
+Use F() macro instead, which uses them from ROM.
+
+Don't know if ESP8266 has same need.
+Use F() macro anyway. Let compiler for ESP8266 figure out what to do.
+
+extern is OK in arduino header files
+with "cat" link/loader, do not know what order files are glopped together,
+
+todo:
+wrap all quoted strings with F().
+
+do a lot of stuff
+study:
+https://www.arduino.cc/en/Hacking/BuildProcess
