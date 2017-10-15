@@ -366,3 +366,12 @@ todo:
     study
         https://schacon.github.io/git/git-rev-parse.html
         http://stevelosh.com/blog/2013/04/git-koans/
+
+###############################################################################
+
+deep miscellaneous
+
+sometimes I use
+    git push -u origin master
+to push the initial stuff to overwrite whatever is on github
+
