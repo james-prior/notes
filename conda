@@ -45,7 +45,13 @@ once per project: create new environment
 
 to begin using an environment:
 
-    source activate myproject
+    newer versions of conda:
+
+        conda activate myproject
+
+    older versions of conda:
+
+        source activate myproject
 
 to quit using an environment:
 
