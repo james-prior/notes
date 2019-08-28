@@ -55,7 +55,13 @@ to begin using an environment:
 
 to quit using an environment:
 
-    source deactivate
+    newer versions of conda:
+
+        conda  deactivate
+
+    older versions of conda:
+
+        source deactivate
 
 miscellaneous
 
